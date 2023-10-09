@@ -1,0 +1,60 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: podwatchers.apps.carlosnunez.me
+spec:
+  group: apps.carlosnunez.me
+  versions:
+      # name: The name of the API version serving our PodWatcher resource.
+    - name: v1
+      # served: Enables/disables this version. 
+      served: true
+      # scope: Determines whether these objects are "Cluster" scoped
+      # (i.e. accessible from all namespaces) or "Namespace" scoped
+      # (i.e. accessible within only namespaces)
+      scope: Cluster
+      # names: Names your resource! Have fun with this one.
+      names:
+        singular: PodWatcher
+        plural: PodWatchers
+        kind: PodWatcher
+        shortNames:
+          - pw
+          - podw
+      # storage: Determines whether to use this API version to store objects
+      # created by this API. Only one version can have 'storage' be 'true'.
+      # This is documented poorly in the Kubernetes API Reference doc, but
+      # you can learn more about this here:
+      # https://stackoverflow.com/a/69560484
+      storage: true
+      # schema: A Swagger doc describing the objects created by this API.
+      #
+      # In this case, our object will look something like this:
+      #
+      # ```yaml
+      # apiVersion: apps.carlosnunez.me/v1
+      # kind: PodWatchers
+      # metadata:
+      #   name: <whatever>
+      # spec:
+      #   watchAnnotation:
+      #     key: podwatchers.apps.carlosnunez.me/witness-me-exclamation-mark
+      #     value: true
+      # ```
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                watchAnnotation:
+                  required:
+                    - key
+                    - value
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string

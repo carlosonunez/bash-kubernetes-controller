@@ -1,0 +1,8 @@
+apiVersion: apps.carlosnunez.me/v1
+kind: PodWatcher
+metadata:
+  name: exmaple-pw
+spec:
+  watchAnnotation:
+    key: podwatchers.apps.carlosnunez.me/witness-me-exclamation-mark
+    value: "true"

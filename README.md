@@ -43,3 +43,9 @@ Want to write your own for-real controller?
 
 Want to turn a Bash script into an operator?
 [Check this out instead](https://github.com/flant/shell-operator)
+
+## Errata
+
+- This doesn't cover creating
+  [finalizers](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#finalizers),
+  which are important for CRs that need to have ordered deletions.
